@@ -257,6 +257,8 @@ with `platform=aarch64`, and `omarchy-apply-system --defer-provisioning
 are deferred to the VM's first boot, so the image holds no user, machine ID,
 SSH host key or keyring. See [guest/factory](../guest/factory/README.md).
 
+The factory records its temporary build identity separately before clearing the machine ID. Before hardware or owner provisioning can rebuild a kernel image, the guest package assigns only the marked factory boot entry to the VM's fresh identity. The boot settings, image paths and hashes stay intact; other systems' entries are not re-keyed.
+
 On ARM, Omarchy publishes only to the `edge` channel for now, and there it
 installs `omarchy-dev` from the `quattro` branch, where the aarch64 platform
 support lives. `factory.json` records the `[omarchy]` database digest the

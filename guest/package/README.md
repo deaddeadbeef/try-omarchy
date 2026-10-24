@@ -159,6 +159,8 @@ removed.
 
 ## Boot console
 
+Before first-boot hardware or owner provisioning, `factory-boot-identity` re-keys only the generated Limine entry named by the factory's ownership marker to the VM's fresh machine ID. It preserves the entry's position, image path, hash and custom settings, and every unrelated entry. Without a factory marker it changes nothing. This prevents a later UKI rebuild from leaving the default entry with a stale hash.
+
 `/etc/limine-entry-tool.d/50-try-omarchy-console.conf` adds `console=hvc0`
 and repeats `console=tty0`, so the screen stays `/dev/console`. Kernel and
 boot messages then also reach the VM's virtio console, which the app keeps as
